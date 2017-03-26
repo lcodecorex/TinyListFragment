@@ -36,9 +36,10 @@ public class BookActivity extends AppCompatActivity {
 }
 ```
 
-### Tiny的使用方法
-##### layout(int inflateLayoutId)   非必须
-为Fragment设置layout，不调用此方法会使用默认layout。自定义的layout.xml文件如下：
+### Tiny中的Builder方法
+1. layout(int inflateLayoutId)   非必须
+
+    为Fragment设置layout，不调用此方法会使用默认layout。自定义的layout.xml文件如下：
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -78,28 +79,30 @@ public class BookActivity extends AppCompatActivity {
 - 包含LRecyclerView，**id必须为tiny_recyclerView**
 - 包含用于当缺省页使用的ViewGroup，**id必须为tiny_emptyView**
 
-##### pageSize(int pageItemCount) 单个页面中需要加载的条数，不设置默认为15条
-##### setCanLoadMore(boolean canLoadMore)  设置是否允许加载更多，默认为true
-##### emptyView(View emptyView)  添加一个缺省页（会替换掉原来的图标和文字）
-##### adapter(BaseRecyclerAdapter<T> adapter) 设置适配器（也可以调用hold方法设置ViewHolder，二者使用一个即可）
-##### layoutManager(RecyclerView.LayoutManager layoutManager) 设置RecyclerView的LayoutManager
-##### hold(IHolder<T> holder) 设置适配器的简单方法，添加Holder使用InnerAdapter在内部添加了适配器
-##### enableResumeRefresh(boolean enableResumeRefresh)  是否需要在onResume()时刷新页面，默认为false
-##### enableEmptyView(boolean enableEmptyView) 是否需要显示缺省界面，默认为true
-##### setSwipeColorRes(int... colorResIds) 设置SwipeRefreshLayout 圆环的颜色，注意是id值，不是16进制值
-##### emptyText(String emptyText) 缺省文字
-##### emptyImage(int drawableId)  缺省图标资源
-##### refreshTimeout(int refreshTimeout)  刷新允许的超时时间（之后会结束刷新控件的显示）
-##### loadMoreTimeout(int loadMoreTimeout) 加载更多允许的超时时间
-##### lazyLoad()  
-懒加载模式，注意只有在ViewPager中使用才有效，或者在合适的地方手动调用**fragment.setUserVisibleHint(true)**
+2. pageSize(int pageItemCount) 单个页面中需要加载的条数，不设置默认为15条
+3. setCanLoadMore(boolean canLoadMore)  设置是否允许加载更多，默认为true
+4. emptyView(View emptyView)  添加一个缺省页（会替换掉原来的图标和文字）
+5. adapter(BaseRecyclerAdapter<T> adapter) 设置适配器（也可以调用hold方法设置ViewHolder，二者使用一个即可）
+6. layoutManager(RecyclerView.LayoutManager layoutManager) 设置RecyclerView的LayoutManager
+7. hold(IHolder<T> holder) 设置适配器的简单方法，添加Holder使用InnerAdapter在内部添加了适配器
+8. enableResumeRefresh(boolean enableResumeRefresh)  是否需要在onResume()时刷新页面，默认为false
+9. enableEmptyView(boolean enableEmptyView) 是否需要显示缺省界面，默认为true
+10. setSwipeColorRes(int... colorResIds) 设置SwipeRefreshLayout 圆环的颜色，注意是id值，不是16进制值
+11. emptyText(String emptyText) 缺省文字
+12. emptyImage(int drawableId)  缺省图标资源
+13. refreshTimeout(int refreshTimeout)  刷新允许的超时时间（之后会结束刷新控件的显示）
+14. loadMoreTimeout(int loadMoreTimeout) 加载更多允许的超时时间
+15. lazyLoad()  
 
-##### setData(IGetData<T> getDataImpl) 
-获取资源的回调方法，必须要回调才能让系统有效的进行分页判断。
+   懒加载模式，注意只有在ViewPager中使用才有效，或者在合适的地方手动调用**fragment.setUserVisibleHint(true)**
+
+16. setData(IGetData<T> getDataImpl) 
+
+    获取资源的回调方法，必须要回调才能让系统有效的进行分页判断。
 - toRefresh(DataCallback<List<Bean>> callback)  执行获取数据的业务并使用callback回调结果；数据数量少于pageSize将自动关闭加载更多；currentPage不为1时，onResume时禁止了自动刷新；
 - toLoadMore(DataCallback<List<Bean>> callback, int currentPage) 执行加载更多获取数据的业务并使用callback回调结果，currentPage表示的是当前需要加载的页面；当加载错误或失败时currentPage将变为原来的值。数据数量少于pageSize将自动关闭加载更多。
 
-##### createFragment()  创建最终的Fragment
+17. createFragment()  创建最终的Fragment
 
 
 ### BaseRecyclerAdapter的使用
