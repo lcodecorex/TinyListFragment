@@ -94,7 +94,7 @@ public class BookActivity extends AppCompatActivity {
 14. loadMoreTimeout(int loadMoreTimeout) 加载更多允许的超时时间
 15. lazyLoad()  
 
-   懒加载模式，注意只有在ViewPager中使用才有效，或者在合适的地方手动调用**fragment.setUserVisibleHint(true)**
+    懒加载模式，注意只有在ViewPager中使用才有效，或者在合适的地方手动调用**fragment.setUserVisibleHint(true)**
 
 16. setData(IGetData<T> getDataImpl) 
 
