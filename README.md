@@ -8,6 +8,7 @@
 4. 刷新、加载、缺省
 5. 分页机制
 6. 布局可定制
+7. tiny
 
 ## 使用
 ### gradle添加依赖
@@ -86,19 +87,19 @@ public class BookActivity extends AppCompatActivity {
 ##### enableResumeRefresh(boolean enableResumeRefresh)  是否需要在onResume()时刷新页面，默认为false
 ##### enableEmptyView(boolean enableEmptyView) 是否需要显示缺省界面，默认为true
 ##### setSwipeColorRes(int... colorResIds) 设置SwipeRefreshLayout 圆环的颜色，注意是id值，不是16进制值
-#####emptyText(String emptyText) 缺省文字
-#####emptyImage(int drawableId)  缺省图标资源
-#####refreshTimeout(int refreshTimeout)  刷新允许的超时时间（之后会结束刷新控件的显示）
-#####loadMoreTimeout(int loadMoreTimeout) 加载更多允许的超时时间
-#####lazyLoad()  
+##### emptyText(String emptyText) 缺省文字
+##### emptyImage(int drawableId)  缺省图标资源
+##### refreshTimeout(int refreshTimeout)  刷新允许的超时时间（之后会结束刷新控件的显示）
+##### loadMoreTimeout(int loadMoreTimeout) 加载更多允许的超时时间
+##### lazyLoad()  
 懒加载模式，注意只有在ViewPager中使用才有效，或者在合适的地方手动调用**fragment.setUserVisibleHint(true)**
 
-#####setData(IGetData<T> getDataImpl) 
+##### setData(IGetData<T> getDataImpl) 
 获取资源的回调方法，必须要回调才能让系统有效的进行分页判断。
 - toRefresh(DataCallback<List<Bean>> callback)  执行获取数据的业务并使用callback回调结果；数据数量少于pageSize将自动关闭加载更多；currentPage不为1时，onResume时禁止了自动刷新；
 - toLoadMore(DataCallback<List<Bean>> callback, int currentPage) 执行加载更多获取数据的业务并使用callback回调结果，currentPage表示的是当前需要加载的页面；当加载错误或失败时currentPage将变为原来的值。数据数量少于pageSize将自动关闭加载更多。
 
-#####createFragment()  创建最终的Fragment
+##### createFragment()  创建最终的Fragment
 
 
 ### BaseRecyclerAdapter的使用
